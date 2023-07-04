@@ -1,3 +1,4 @@
+const camelize = require('camelize');
 const connection = require('./connection');
 
 const findAllSales = async () => {
@@ -8,7 +9,7 @@ const findAllSales = async () => {
     ON S.id = SP.sale_id
     ORDER BY SP.sale_id, SP.product_id;`,
   );
-  return sales;
+  return camelize(sales);
 };
 
 const findSaleById = async (saleID) => {
