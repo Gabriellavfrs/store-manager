@@ -29,18 +29,23 @@ const allProductsFromModel = [
 ];
 
 const productByIdFromDB = {
-  id: 2,
+  id: 42,
   name: 'Traje de encolhimento',
 };
 
 const productByIdFromModel = {
-  id: 2,
+  id: 42,
   name: 'Traje de encolhimento',
 };
+
+const productIdFromDB = { insertId: 42 };
+const productIdFromModel = 42;
 
 module.exports = {
   allProductsFromDB,
   allProductsFromModel,
   productByIdFromDB,
   productByIdFromModel,
+  productIdFromDB,
+  productIdFromModel,
 };

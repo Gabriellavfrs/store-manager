@@ -10,7 +10,18 @@ const findProductById = async (productID) => {
   return product;
 };
 
+const insertProduct = async (product) => {
+  const columns = getFormattedColumnNames(product);
+  const placeholders = getFormattedPlaceholders(product);
+  const query = `INSERT INTO products (${columns}) VALUE (${placeholders});`;
+  const values = Object.values(product);
+
+  const [{ insertId }] = await connection.execute(query, [...values]);
+  return insertId;
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
+  insertProduct,
 };
