@@ -1,4 +1,8 @@
 const connection = require('./connection');
+const { 
+  getFormattedColumnNames, 
+  getFormattedPlaceholders,
+} = require('../utils/generateFormattedQuery');
 
 const findAllProducts = async () => {
   const [products] = await connection.execute('SELECT * FROM products');
