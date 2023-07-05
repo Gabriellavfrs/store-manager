@@ -4,7 +4,7 @@ const connection = require('../../../src/models/connection');
 const { productModel } = require('../../../src/models');
 const { allProductsFromDB, allProductsFromModel, productByIdFromDB, productByIdFromModel, productIdFromDB, productIdFromModel } = require('../mocks/product.mock');
 
-describe('Model Test', function () {
+describe('Product Model Test', function () {
   it('Can find all products', async function () {
     sinon.stub(connection, 'execute').resolves([allProductsFromDB]);
 
@@ -17,7 +17,7 @@ describe('Model Test', function () {
   it('Can find a product by id', async function () {
     sinon.stub(connection, 'execute').resolves([[productByIdFromDB]]);
 
-    const inputData = 2;
+    const inputData = 42;
     const products = await productModel.findProductById(inputData);
 
     expect(products).to.be.an('object');

@@ -56,6 +56,16 @@ describe('Service Test', function () {
     expect(serviceResponse.data).to.be.deep.equal(productByIdFromModel);
   });
 
+  it('Return status INVALID_VALUE when insertion product name length < 5', async function () {
+    const inputData = {
+      name: 'aaa',
+    };
+    const serviceResponse = await productService.insertNewProduct(inputData);
+
+    expect(serviceResponse.status).to.equal('INVALID_VALUE');
+    expect(serviceResponse.data).to.be.deep.equal({ message: '"name" length must be at least 5 characters long' });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
