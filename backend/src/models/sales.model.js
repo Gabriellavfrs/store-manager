@@ -48,10 +48,9 @@ const registerSale = async (sales) => {
   };
   return registeredSale;
 };
-
+  
 module.exports = {
   findAllSales,
   findSaleById,
-  insertSaleProducts,
   registerSale,
 };

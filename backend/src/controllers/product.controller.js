@@ -14,9 +14,6 @@ const productById = async (req, res) => {
 
 const newProduct = async (req, res) => {
   const productData = req.body;
-  if (!productData.name) {
-    return res.status(400).json({ message: '"name" is required' });
-  }
   const { status, data } = await productService.insertNewProduct(productData);
   return res.status(mapStatusHTTP(status)).json(data);
 };
