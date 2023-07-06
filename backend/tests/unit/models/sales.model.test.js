@@ -17,7 +17,7 @@ describe('Sales Model Test', function () {
   it('Can find a sale by id', async function () {
     sinon.stub(connection, 'execute').resolves([saleByIdFromDB]);
 
-    const inputData = 2;
+    const inputData = 42;
     const sale = await salesModel.findSaleById(inputData);
 
     expect(sale).to.be.an('array');

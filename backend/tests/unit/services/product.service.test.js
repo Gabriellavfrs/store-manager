@@ -4,7 +4,7 @@ const { productModel } = require('../../../src/models');
 const { productService } = require('../../../src/services');
 const { allProductsFromDB, allProductsFromModel, productByIdFromDB, productByIdFromModel, productIdFromDB } = require('../mocks/product.mock');
 
-describe('Service Test', function () {
+describe('Product Service Test', function () {
   it('Can successfully get all products', async function () {
     sinon.stub(productModel, 'findAllProducts').resolves(allProductsFromDB);
 
@@ -26,7 +26,7 @@ describe('Service Test', function () {
   it('Can successfully get a product by id', async function () {
     sinon.stub(productModel, 'findProductById').resolves(productByIdFromDB);
 
-    const inputData = 2;
+    const inputData = 42;
     const serviceResponse = await productService.getProductById(inputData);
 
     expect(serviceResponse.status).to.equal('SUCCESSFUL');
@@ -36,7 +36,7 @@ describe('Service Test', function () {
   it('return status NOT_FOUND when can not get product by id ', async function () {
     sinon.stub(productModel, 'findProductById').resolves(undefined);
 
-    const inputData = 4;
+    const inputData = 99;
     const serviceResponse = await productService.getProductById(inputData);
 
     expect(serviceResponse.status).to.equal('NOT_FOUND');

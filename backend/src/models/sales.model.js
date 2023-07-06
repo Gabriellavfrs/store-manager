@@ -1,5 +1,9 @@
 const camelize = require('camelize');
 const connection = require('./connection');
+const { 
+  getFormattedColumnNames, getFormattedPlaceholders, 
+  // getFormattedPlaceholders, 
+} = require('../utils/generateFormattedQuery');
 
 const findAllSales = async () => {
   const [sales] = await connection.execute(
@@ -25,7 +29,29 @@ const findSaleById = async (saleID) => {
   return camelize(sale);
 };
 
+const insertSaleProducts = async (saleId, sales) => {
+  const columns = getFormattedColumnNames(sales[0]);
+  const placeholders = sales.map((sale) => `(?, ${getFormattedPlaceholders(sale)})`).join(', ');
+
+  const values = sales.flatMap((sale) => [saleId, ...Object.values(sale)]);
+  const query = `INSERT INTO sales_products (sale_id, ${columns}) VALUES ${placeholders};`;
+  return connection.execute(query, values);
+};
+
+const registerSale = async (sales) => {
+  const query = 'INSERT INTO sales () VALUES ();';
+  const [{ insertId }] = await connection.execute(query, []);
+  await insertSaleProducts(insertId, sales);
+  const registeredSale = {
+    id: insertId,
+    itemsSold: sales,
+  };
+  return registeredSale;
+};
+
 module.exports = {
   findAllSales,
   findSaleById,
+  insertSaleProducts,
+  registerSale,
 };
