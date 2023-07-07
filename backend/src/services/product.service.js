@@ -3,9 +3,6 @@ const { productNameSchema } = require('./validations/schemas');
 
 const getAllProducts = async () => {
   const products = await productModel.findAllProducts();
-  if (products.length < 1) {
-    return { status: 'NOT_FOUND', data: { message: 'There are no products' } };
-  }
   return { status: 'SUCCESSFUL', data: products };
 };
 
@@ -36,9 +33,17 @@ const updateProductInfo = async (productID, productData) => {
   return { status: 'SUCCESSFUL', data: updatedProduct };
 };
 
+const deleteProductById = async (productID) => {
+  const isValidProductId = await productModel.findProductById(productID);
+  if (!isValidProductId) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+  await productModel.deleteProduct(productID);
+  return { status: 'NO_CONTENT' };
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   insertNewProduct,
   updateProductInfo,
+  deleteProductById,
 };

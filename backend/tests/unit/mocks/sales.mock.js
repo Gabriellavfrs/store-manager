@@ -73,6 +73,21 @@ const saleFromModel = {
   ],
 };
 
+const allSalesFromServiceSuccess = {
+  status: 'SUCCESSFUL',
+  data: allSalesFromModel,
+};
+
+const saleByIdFromServiceSuccess = {
+  status: 'SUCCESSFUL',
+  data: saleByIdFromModel,
+};
+
+const saleByIdFromServiceNotFound = {
+  status: 'NOT_FOUND',
+  data: { message: 'message' },
+};
+
 module.exports = {
   allSalesFromDB,
   allSalesFromModel,
@@ -80,4 +95,7 @@ module.exports = {
   saleByIdFromModel,
   saleIdFromDB,
   saleFromModel,
+  allSalesFromServiceSuccess,
+  saleByIdFromServiceSuccess,
+  saleByIdFromServiceNotFound,
 };

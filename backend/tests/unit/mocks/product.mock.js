@@ -41,6 +41,16 @@ const productByIdFromModel = {
 const productIdFromDB = { insertId: 42 };
 const productIdFromModel = 42;
 
+const updatedProductByIdFromDB = {
+  id: 42,
+  name: 'Martelo do Batman',
+};
+
+const updatedProductByIdFromModel = {
+  id: 42,
+  name: 'Martelo do Batman',
+};
+
 const allproductsFromServiceSuccess = {
   status: 'SUCCESSFUL',
   data: allProductsFromModel,
@@ -66,4 +76,6 @@ module.exports = {
   allproductsFromServiceSuccess,
   productByIdFromServiceSuccess,
   productByIdFromServiceNotFound,
+  updatedProductByIdFromDB,
+  updatedProductByIdFromModel,
 };

@@ -3,9 +3,6 @@ const { saleQuantitySchema } = require('./validations/schemas');
 
 const getAllSales = async () => {
   const sales = await salesModel.findAllSales();
-  if (sales.length < 1) {
-    return { status: 'NOT_FOUND', data: { message: 'There are no sales' } };
-  }
   return { status: 'SUCCESSFUL', data: sales };
 };
 
